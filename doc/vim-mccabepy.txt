@@ -1,0 +1,89 @@
+*vim-mccabepy.txt* Runs McCabe complexity check (mccabe.py) for python script.
+
+Author: miyakogi (https://github.com/miyakogi/)
+Repository: https://github.com/miyakogi/vim-mccabepy
+Version: 0.1 (Last changed: Feb. 26, 2014)
+
+==============================================================================
+CONTENTS					*vim-mccabepy-contents*
+
+  1. Introduction.............................. |vim-mccabepy-introduction|
+  2. Usage..................................... |vim-mccabepy-usage|
+  3. Commands.................................. |vim-mccabepy-commands|
+  4. Options................................... |vim-mccabepy-options|
+
+==============================================================================
+1. INTRODUCTION					*vim-mccabepy-introduction*
+
+This plugin runs McCabe complexity check (mccabe.py) and show the results in
+quickfix window.
+
+Features:~
+  - Support both python2.x and python3.x.
+
+==============================================================================
+2. USAGE					*vim-mccabepy-usage*
+
+Execute |:MccabePy| on any python script files. Before use this plugin, please
+confirm that `mccabe.py` is installed. If it is not installed, please run >
+	pip install mccabe
+<
+
+Note: If you are using `virtualenv` and `vim-virtualenv`, please install
+`mccabe.py` into the virtual environment. This prevents errors from
+version-dependencies of python.
+
+==============================================================================
+3. COMMANDS					*vim-mccabepy-commands*
+
+------------------------------------------------------------------------------
+:MccabePy					*:MccabePy*
+
+Run mccabe.py and measure complexity of the script in the current buffer. If
+there were any function or method which have larger complexity than
+|g:mccabepy_min_complexity|, they were shown in |quickfix| window (by default).
+
+==============================================================================
+4. OPTIONS					*vim-mccabepy-options*
+
+------------------------------------------------------------------------------
+						*b:mccabepy_min_complexity*
+						*g:mccabepy_min_complexity*
+This option defines the minimum complexity to be reported. If buffer local
+variable |b:mccabepy_min_complexity| exists, |g:mccabepy_min_complexity| is
+ignored.
+
+  Type: Number
+  Default: 10
+  Example: >
+	let g:mccabepy_min_complexity = 6
+<
+
+------------------------------------------------------------------------------
+						*g:mccabepy_qfix_command*
+This option specifies the command to open quickfix (or other) window to show
+the results.
+
+  Type: String
+  Default: 'copen'
+  Example (for Unite user): >
+	let g:mccabepy_qfix_command = 'Unite quickfix -no-quit' .
+					\ '-buffer-name=quickfix'
+<
+
+------------------------------------------------------------------------------
+						*g:mccabepy_qfix_close_command*
+This option specifies the command to be executed if no functin/method was
+found to exceed |b:mccabepy_min_complexity| or |g:mccabepy_min_complexity|.
+By default, do nothing.
+
+  Type: String
+  Default: ''
+  Example 1 (close quickfix window): >
+	let g:mccabepy_qfix_close_command = 'cclose'
+<
+  Example 2 (for Unite user): >
+	let g:mccabepy_qfix_close_command = 'UniteClose qcuikfix'
+<
+
+vim:tw=78:sw=8:ts=8:ft=help:norl:noet:
