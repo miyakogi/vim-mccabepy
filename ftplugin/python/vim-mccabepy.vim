@@ -12,29 +12,29 @@ function! g:mccabepy()
 
 	let l:cmd = 'python -m mccabe --min ' . s:min_complexity . " " . l:filepath
 
-	let l:err_msg = system(l:cmd)
+	let l:mccabe_msg = system(l:cmd)
 
-	if match(l:err_msg, 'No module named mccabe') > 0
+	if match(l:mccabe_msg, 'No module named mccabe') > 0
 		echohl ErrorMsg
 		echon "Module 'mccabe' is not installed.\nPlease install it, by executing 'pip install mccabe'. "
 		echohl
 		return
 	endif
 
-	let l:err_msg = substitute(l:err_msg, "[()\"',]", "", "g")
-	let l:err_msg = substitute(l:err_msg, ": ", ":", "g")
-	let err_list = split(l:err_msg, '\n')
-	let b:qf_list = []
+	let l:mccabe_msg = substitute(l:mccabe_msg, "[()\"',]", "", "g")
+	let l:mccabe_msg = substitute(l:mccabe_msg, ": ", ":", "g")
+	let mccabe_list = split(l:mccabe_msg, '\n')
+	let b:loc_list = []
 	try
-		for err in err_list
-			let err_item_list = split(err, "\[: \]")
-			let l:err_item = {}
-			let l:err_item.type = 'W'
-			let l:err_item.filename = l:filepath
-			let l:err_item.lnum = err_item_list[0]
-			let l:cpl_num = err_item_list[3]
-			let l:err_item.text =  err_item_list[2] . " (" . l:cpl_num . ")"
-			call add(b:qf_list, l:err_item)
+		for loc_line in mccabe_list
+			let loc_item_list = split(loc_line, "\[: \]")
+			let l:loc_item = {}
+			let l:loc_item.type = 'W'
+			let l:loc_item.filename = l:filepath
+			let l:loc_item.lnum = loc_item_list[0]
+			let l:cpl_num = loc_item_list[3]
+			let l:loc_item.text =  loc_item_list[2] . " (" . l:cpl_num . ")"
+			call add(b:loc_list, l:loc_item)
 		endfor
 	catch /^Vim\%((\a\+)\)\=:E/
 		echohl ErrorMsg
@@ -43,12 +43,12 @@ function! g:mccabepy()
 		return
 	endtry
 
-	call setloclist(0, b:qf_list)
+	call setloclist(0, b:loc_list)
 
-	if len(b:qf_list) > 0
-		call s:open_qfix()
+	if len(b:loc_list) > 0
+		call s:loc_open()
 	else
-		call s:close_qfix()
+		call s:loc_close()
 		hi MccabePyGreen term=reverse ctermfg=white ctermbg=green guifg=#fefefe guibg=#00cc00 gui=bold
 		echohl MccabePyGreen
 		echon " - McCabe check OK - "
@@ -56,20 +56,20 @@ function! g:mccabepy()
 	endif
 endfunction
 
-function! s:open_qfix()
-	let qfix_command = 'lopen'
-	if exists('g:mccabepy_qfix_command')
-		let qfix_command = g:mccabepy_qfix_command
+function! s:loc_open()
+	let loc_open_cmd = 'lopen'
+	if exists('g:mccabepy_loc_open_cmd')
+		let loc_open_cmd = g:mccabepy_loc_open_cmd
 	endif
-	execute qfix_command
+	execute loc_open_cmd
 endfunction
 
-function! s:close_qfix()
-	let qfix_close_command = 'lclose'
-	if exists('g:mccabepy_qfix_close_command')
-		let qfix_close_command = g:mccabepy_qfix_close_command
+function! s:loc_close()
+	let loc_close_cmd = 'lclose'
+	if exists('g:mccabepy_loc_close_cmd')
+		let loc_close_cmd = g:mccabepy_loc_close_cmd
 	endif
-	execute qfix_close_command
+	execute loc_close_cmd
 endfunction
 
 command! MccabePy call g:mccabepy()

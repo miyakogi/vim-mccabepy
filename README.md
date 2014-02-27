@@ -30,18 +30,18 @@ Default complexity of threshold to be reported is 10. To change this value, set 
 
 ### Reporting results
 
-By default, results will be reported in the location-list window. If location-list window is not opened, it will be automatically opened. This action can be changed by using `g:mccabepy_qfix_command` option. For example, if you are [Unite](https://github.com/Shougo/unite.vim) user and you want to use `Unite location-list` window, add the following lines in your vimrc. Then, the results will be reported in Unite window.
+By default, results will be reported in the location-list window. If location-list window is not opened, it will be automatically opened. This action can be changed by using `g:mccabepy_loc_open_cmd` option. For example, if you are [Unite](https://github.com/Shougo/unite.vim) user and you want to use `Unite location-list` window, add the following lines in your vimrc. Then, the results will be reported in Unite window.
 
-	let g:mccabepy_qfix_command = 'Unite location-list -no-quit -buffer-name=mccabepy'
+	let g:mccabepy_loc_open_cmd = 'Unite location-list -no-quit -buffer-name=mccabepy'
 
 ##### Close result window automatically
 
-If there were nothing to be reported, no window will appear. If location-list window is opened, it will be closed automatically. To change this behaviour, use `g:mccabepy_qfix_close_command`.
+If there were nothing to be reported, no window will appear. If location-list window is opened, it will be closed automatically. To change this behaviour, use `g:mccabepy_loc_close_cmd`.
 
 Example 1) Do not close location-list window.
 
-	let g:mccabepy_qfix_close_command = ''
+	let g:mccabepy_loc_close_cmd = ''
 
 Example 2) To close `Unite location-list` window if there are nothing to be reported.
 
-	let g:mccabepy_qfix_close_command = 'UniteClose mccabepy'
+	let g:mccabepy_loc_close_cmd = 'UniteClose mccabepy'

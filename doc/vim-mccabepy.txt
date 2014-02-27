@@ -61,19 +61,19 @@ ignored.
 <
 
 ------------------------------------------------------------------------------
-						*g:mccabepy_qfix_command*
+						*g:mccabepy_loc_open_cmd*
 This option specifies the command to open location-list (or other) window to
 show the results.
 
   Type: String
   Default: 'lopen'
   Example (for Unite user): >
-	let g:mccabepy_qfix_command = 'Unite location-list -no-quit' .
+	let g:mccabepy_loc_open_cmd = 'Unite location-list -no-quit' .
 					\ '-buffer-name=mccabepy'
 <
 
 ------------------------------------------------------------------------------
-						*g:mccabepy_qfix_close_command*
+						*g:mccabepy_loc_close_cmd*
 This option specifies the command to be executed if no function/method was
 found to exceed |b:mccabepy_min_complexity| or |g:mccabepy_min_complexity|.
 By default, close |location-list| window.
@@ -81,10 +81,10 @@ By default, close |location-list| window.
   Type: String
   Default: 'lclose'
   Example 1 (do nothing): >
-	let g:mccabepy_qfix_close_command = ''
+	let g:mccabepy_loc_close_cmd = ''
 <
   Example 2 (close Unite' location-list window, for Unite user): >
-	let g:mccabepy_qfix_close_command = 'UniteClose mccabe'
+	let g:mccabepy_loc_close_cmd = 'UniteClose mccabe'
 <
 
 vim:tw=78:sw=8:ts=8:ft=help:norl:noet:
