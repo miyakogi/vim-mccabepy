@@ -10,10 +10,11 @@ function! g:mccabepy()
 		let s:min_complexity = g:mccabepy_min_complexity
 	endif
 
-	let cmd = 'python -m mccabe --min ' . s:min_complexity . " " . l:filepath
-	let err_msg = system(cmd)
+	let l:cmd = 'python -m mccabe --min ' . s:min_complexity . " " . l:filepath
 
-	if match(err_msg, 'No module named mccabe') > 0
+	let l:err_msg = system(l:cmd)
+
+	if match(l:err_msg, 'No module named mccabe') > 0
 		hi MccabePyRed term=reverse ctermfg=white ctermbg=red guifg=#fefefe guibg=#cc0000 gui=bold
 		echohl MccabePyRed
 		echon "Module 'mccabe' is not installed.\nPlease install it, by executing 'pip install mccabe'. "
@@ -21,9 +22,9 @@ function! g:mccabepy()
 		return
 	endif
 
-	let err_msg = substitute(err_msg, "[()\"',]", "", "g")
-	let err_msg = substitute(err_msg, ": ", ":", "g")
-	let err_list = split(err_msg, '\n')
+	let l:err_msg = substitute(l:err_msg, "[()\"',]", "", "g")
+	let l:err_msg = substitute(l:err_msg, ": ", ":", "g")
+	let err_list = split(l:err_msg, '\n')
 	let b:qf_list = []
 	try
 		for err in err_list
