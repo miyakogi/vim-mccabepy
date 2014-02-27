@@ -65,9 +65,11 @@ function! s:open_qfix()
 endfunction
 
 function! s:close_qfix()
+	let qfix_close_command = 'cclose'
 	if exists('g:mccabepy_qfix_close_command')
-		execute g:mccabepy_qfix_close_command
+		let qfix_close_command = g:mccabepy_qfix_close_command
 	endif
+	execute qfix_close_command
 endfunction
 
 command! MccabePy call g:mccabepy()
