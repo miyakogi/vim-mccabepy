@@ -15,8 +15,7 @@ function! g:mccabepy()
 	let l:err_msg = system(l:cmd)
 
 	if match(l:err_msg, 'No module named mccabe') > 0
-		hi MccabePyRed term=reverse ctermfg=white ctermbg=red guifg=#fefefe guibg=#cc0000 gui=bold
-		echohl MccabePyRed
+		echohl ErrorMsg
 		echon "Module 'mccabe' is not installed.\nPlease install it, by executing 'pip install mccabe'. "
 		echohl
 		return
@@ -38,8 +37,7 @@ function! g:mccabepy()
 			call add(b:qf_list, l:err_item)
 		endfor
 	catch /^Vim\%((\a\+)\)\=:E/
-		hi MccabePyRed term=reverse ctermfg=white ctermbg=red guifg=#fefefe guibg=#cc0000 gui=bold
-		echohl MccabePyRed
+		echohl ErrorMsg
 		echon " - McCabe check Error - "
 		echohl
 		return
