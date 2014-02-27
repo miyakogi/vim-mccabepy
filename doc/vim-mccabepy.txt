@@ -16,7 +16,7 @@ CONTENTS					*vim-mccabepy-contents*
 1. INTRODUCTION					*vim-mccabepy-introduction*
 
 This plugin runs McCabe complexity check (mccabe.py) and show the results in
-quickfix window.
+|location-list| window.
 
 Features:~
   - Support both python 2.x and python 3.x.
@@ -39,9 +39,10 @@ installed in the virtual environment.
 ------------------------------------------------------------------------------
 :MccabePy					*:MccabePy*
 
-Run mccabe.py and measure complexity of the script in the current buffer. If
-there were any function or method which have larger complexity than
-|g:mccabepy_min_complexity|, they were shown in |quickfix| window (by default).
+Run mccabe.py and measure complexity of the code in the current buffer. If
+there were any function or method which exceed minimum complexity defined by
+|g:mccabepy_min_complexity|, they were shown in |location-list| window (by
+default).
 
 ==============================================================================
 4. OPTIONS					*vim-mccabepy-options*
@@ -61,29 +62,29 @@ ignored.
 
 ------------------------------------------------------------------------------
 						*g:mccabepy_qfix_command*
-This option specifies the command to open quickfix (or other) window to show
-the results.
+This option specifies the command to open location-list (or other) window to
+show the results.
 
   Type: String
-  Default: 'copen'
+  Default: 'lopen'
   Example (for Unite user): >
-	let g:mccabepy_qfix_command = 'Unite quickfix -no-quit' .
-					\ '-buffer-name=quickfix'
+	let g:mccabepy_qfix_command = 'Unite location-list -no-quit' .
+					\ '-buffer-name=mccabepy'
 <
 
 ------------------------------------------------------------------------------
 						*g:mccabepy_qfix_close_command*
 This option specifies the command to be executed if no function/method was
 found to exceed |b:mccabepy_min_complexity| or |g:mccabepy_min_complexity|.
-By default, close quickfix window.
+By default, close |location-list| window.
 
   Type: String
-  Default: 'cclose'
+  Default: 'lclose'
   Example 1 (do nothing): >
 	let g:mccabepy_qfix_close_command = ''
 <
-  Example 2 (close Unite quickfix, for Unite user): >
-	let g:mccabepy_qfix_close_command = 'UniteClose quickfix'
+  Example 2 (close Unite' location-list window, for Unite user): >
+	let g:mccabepy_qfix_close_command = 'UniteClose mccabe'
 <
 
 vim:tw=78:sw=8:ts=8:ft=help:norl:noet:

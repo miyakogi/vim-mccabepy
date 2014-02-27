@@ -1,7 +1,7 @@
 vim-mccabepy
 ============
 
-This is a vim plugin to execute McCabe complexity check (mccabe.py) and reports the results in quickfix window.
+This is a vim plugin to execute McCabe complexity check (mccabe.py) and reports the results in location-list window.
 
 Installation
 ------------
@@ -30,18 +30,18 @@ Default complexity of threshold to be reported is 10. To change this value, set 
 
 ### Reporting results
 
-By default, results will be reported in the quickfix window. If quickfix window is not opened, it will be automatically opened. This action can be changed by using `g:mccabepy_qfix_command` option. For example, if you are [Unite](https://github.com/Shougo/unite.vim) user and you want to use `Unite quickfix` window, add the following lines in your vimrc. Then, the results will be reported in Unite window.
+By default, results will be reported in the location-list window. If location-list window is not opened, it will be automatically opened. This action can be changed by using `g:mccabepy_qfix_command` option. For example, if you are [Unite](https://github.com/Shougo/unite.vim) user and you want to use `Unite location-list` window, add the following lines in your vimrc. Then, the results will be reported in Unite window.
 
-	let g:mccabepy_qfix_command = 'Unite quickfix -no-quit -buffer-name=quickfix'
+	let g:mccabepy_qfix_command = 'Unite location-list -no-quit -buffer-name=mccabepy'
 
 ##### Close result window automatically
 
-If there were nothing to be reported, no window will appear. If quickfix window is opened, it will be closed automatically. To change this behaviour, use `g:mccabepy_qfix_close_command`.
+If there were nothing to be reported, no window will appear. If location-list window is opened, it will be closed automatically. To change this behaviour, use `g:mccabepy_qfix_close_command`.
 
-Example 1) Do not close quickfix window.
+Example 1) Do not close location-list window.
 
 	let g:mccabepy_qfix_close_command = ''
 
-Example 2) To close `Unite quickfix` window if there are nothing to be reported.
+Example 2) To close `Unite location-list` window if there are nothing to be reported.
 
-	let g:mccabepy_qfix_close_command = 'UniteClose qcuikfix'
+	let g:mccabepy_qfix_close_command = 'UniteClose mccabepy'

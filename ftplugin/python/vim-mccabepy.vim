@@ -43,7 +43,7 @@ function! g:mccabepy()
 		return
 	endtry
 
-	call setqflist(b:qf_list)
+	call setloclist(0, b:qf_list)
 
 	if len(b:qf_list) > 0
 		call s:open_qfix()
@@ -57,7 +57,7 @@ function! g:mccabepy()
 endfunction
 
 function! s:open_qfix()
-	let qfix_command = 'copen'
+	let qfix_command = 'lopen'
 	if exists('g:mccabepy_qfix_command')
 		let qfix_command = g:mccabepy_qfix_command
 	endif
@@ -65,7 +65,7 @@ function! s:open_qfix()
 endfunction
 
 function! s:close_qfix()
-	let qfix_close_command = 'cclose'
+	let qfix_close_command = 'lclose'
 	if exists('g:mccabepy_qfix_close_command')
 		let qfix_close_command = g:mccabepy_qfix_close_command
 	endif
