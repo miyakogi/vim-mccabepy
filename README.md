@@ -19,29 +19,29 @@ Before run this plugin, please install mccabe.py, by `pip install mccabe` or any
 Usage
 -----
 
-Open any python script file and execute `:MccabePy`.
+Open \*.py file and execute `:MccabePy`.
 
 Configuration
 -------------
 
 ### Minimum complexity
 
-Default threshold complexity to be reported is 10. To change this value, set `b:mccabepy_min_complexity` or `g:mccabepy_min_complexity`. If `b:mccabepy_min_complexity` exists, `g:mccabepy_min_complexity` is ignored.
+Default complexity of threshold to be reported is 10. To change this value, set `b:mccabepy_min_complexity` or `g:mccabepy_min_complexity`. If buffer local variable `b:mccabepy_min_complexity` exists, `g:mccabepy_min_complexity` is ignored.
 
 ### Reporting results
 
-By default, results will be reported in quickfix window. If quickfix window is not opened, it will be automatically opened. This action can be changed by `g:mccabepy_qfix_command` option. For example, if you are [Unite](https://github.com/Shougo/unite.vim) user and you want to use `Unite quickfix` window, add the following lines in your vimrc.
+By default, results will be reported in the quickfix window. If quickfix window is not opened, it will be automatically opened. This action can be changed by using `g:mccabepy_qfix_command` option. For example, if you are [Unite](https://github.com/Shougo/unite.vim) user and you want to use `Unite quickfix` window, add the following lines in your vimrc. Then, the results will be reported in Unite window.
 
 	let g:mccabepy_qfix_command = 'Unite quickfix -no-quit -buffer-name=quickfix'
 
 ##### Close result window automatically
 
-If there were nothing to be reported, no window will appear. To execute any command at this time, use `g:mccabepy_qfix_close_command`.
+If there were nothing to be reported, no window will appear. If quickfix window is opened, it will be closed automatically. To change this behaviour, use `g:mccabepy_qfix_close_command`.
 
-Example 1) To close quickfix window if there are any reports,
+Example 1) Do not close quickfix window.
 
-	let g:mccabepy_qfix_close_command = 'cclose'
+	let g:mccabepy_qfix_close_command = ''
 
-Example 2) To close `Unite quickfix` window if there are any reports,
+Example 2) To close `Unite quickfix` window if there are nothing to be reported.
 
 	let g:mccabepy_qfix_close_command = 'UniteClose qcuikfix'
