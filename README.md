@@ -26,11 +26,11 @@ Configuration
 
 ### Minimum complexity
 
-Default complexity of threshold to be reported is 10. To change this value, set `b:mccabepy_min_complexity` or `g:mccabepy_min_complexity`. If buffer local variable `b:mccabepy_min_complexity` exists, `g:mccabepy_min_complexity` is ignored.
+Threashold of the complexity to be reported is set to 10 by default. To change this value, set `b:mccabepy_min_complexity` or `g:mccabepy_min_complexity`. If buffer local variable `b:mccabepy_min_complexity` exists, `g:mccabepy_min_complexity` is ignored.
 
 ### Reporting results
 
-By default, results will be reported in the location-list window. If location-list window is not opened, it will be automatically opened. This action can be changed by using `g:mccabepy_loc_open_cmd` option. For example, if you are [Unite](https://github.com/Shougo/unite.vim) user and you want to use `Unite location-list` window, add the following lines in your vimrc. Then, the results will be reported in Unite window.
+By default, results will be reported in the location-list window. This action can be changed by using `g:mccabepy_loc_open_cmd` option. For example, if you are a [Unite](https://github.com/Shougo/unite.vim) user and you want to use `Unite location-list` window, add the following lines in your vimrc. Then, the results will be reported in the Unite window.
 
 	let g:mccabepy_loc_open_cmd = 'Unite location-list -no-quit -buffer-name=mccabepy'
 
