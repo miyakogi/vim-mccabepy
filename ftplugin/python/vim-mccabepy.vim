@@ -1,6 +1,6 @@
 scriptencoding utf-8
 
-function! g:mccabepy()
+function! g:MccabePy()
 	let l:filepath = expand('%')
 
 	let s:min_complexity = 10
@@ -72,4 +72,4 @@ function! s:loc_close()
 	execute loc_close_cmd
 endfunction
 
-command! MccabePy call g:mccabepy()
+command! MccabePy call g:MccabePy()
